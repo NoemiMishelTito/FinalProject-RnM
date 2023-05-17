@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mi página de Rick y Morty</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-custom">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Personajes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="rickMorty.html">Caracteres</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="location.html">Locaciones</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="jumbotron jumbotron-fluid bg-dark text-center">
+        <div class="container">
+            <h1 class="display-4 text-white">Rick and Morty</h1>
+            <p class="lead text-white">Una serie animada de ciencia ficción para adultos creada por Justin Roiland y Dan
+                Harmon.</p>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row" id="character-list"></div>
+    </div>
+
+    <script>
+        const characterList = document.getElementById('character-list');
+        fetch('https://rickandmortyapi.com/api/character/')
+            .then(response => response.json())
+            .then(data => {
+                const characters = data.results.slice(0, 10); // Selecciona los primeros 10 personajes de la lista
+                characters.forEach(character => {
+                    const col = document.createElement('div');
+                    col.classList.add('col-lg-4', 'col-md-6', 'mb-4');
+                    const card = document.createElement('div');
+                    card.classList.add('card', 'h-100', 'border-0');
+                    const img = document.createElement('img');
+                    img.src = character.image;
+                    img.classList.add('card-img-top');
+                    const cardBody = document.createElement('div');
+                    cardBody.classList.add('card-body');
+                    const h4 = document.createElement('h4');
+                    h4.classList.add('card-title');
+                    h4.textContent = character.name;
+                    const p = document.createElement('p');
+                    p.classList.add('card-text');
+                    p.textContent = `Género: ${character.gender}, Especie: ${character.species}`;
+                    cardBody.appendChild(h4);
+                    cardBody.appendChild(p);
+                    card.appendChild(img);
+                    card.appendChild(cardBody);
+                    col.appendChild(card);
+                    characterList.appendChild(col);
+                });
+            })
+            .catch(error => console.error(error));
+    </script>
+    <footer class="bg-dark text-white text-center py-1">
+        <p class="m-0 small">
+            © 2023 La página de Rick y Morty. Todos los derechos reservados.
+            <br>
+            By: Mishel Tito
+            <br>
+            Contacto: mishtito19@gmail.com
+        </p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
