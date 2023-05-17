@@ -66,12 +66,12 @@ body {
   }
 
   #character-list {
-    margin-top: 80px; /* Ajusta este valor según lo que necesites */
-    margin-bottom: 80px; /* Ajusta este valor según lo que necesites */
+    margin-top: 80px; 
+    margin-bottom: 80px; 
   }
   #location-list {
-    margin-top: 80px; /* Ajusta este valor según lo que necesites */
-    margin-bottom: 80px; /* Ajusta este valor según lo que necesites */
+    margin-top: 80px; 
+    margin-bottom: 80px; 
   }
 
   .card-unknown {
